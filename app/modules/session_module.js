@@ -1,6 +1,6 @@
 var session = (function () {
-  let phone_dir = JSON.parse(localStorage.getItem('phone_dir') || '[]');
-  let email_dir = JSON.parse(localStorage.getItem('email_dir') || '[]');
+  let phone_dir = JSON.parse(window.localStorage.getItem('phone_dir') || '[]');
+  let email_dir = JSON.parse(window.localStorage.getItem('email_dir') || '[]');
 
   var _isPhonePresent = function(phone) {
     return phone_dir.includes(phone);
@@ -11,9 +11,9 @@ var session = (function () {
   };
 
   var _saveLocalStorage = function(options) {
-    localStorage.setItem('phone_dir', JSON.stringify(phone_dir));
-    localStorage.setItem('email_dir', JSON.stringify(email_dir));
-    localStorage.setItem(options['email'], JSON.stringify(options));
+    window.localStorage.setItem('phone_dir', JSON.stringify(phone_dir));
+    window.localStorage.setItem('email_dir', JSON.stringify(email_dir));
+    window.localStorage.setItem(options['email'], JSON.stringify(options));
   };
 
   var _writeToJsonFile = function(students) {
@@ -41,13 +41,13 @@ var session = (function () {
   };
 
   var _isValidSession = function (data, role) {
-    let user = JSON.parse(localStorage.getItem(data['login_email']));
+    let user = JSON.parse(window.localStorage.getItem(data['login_email']));
     return user.password == data['login_password'] && user.role == role
   };
 
   var _setSession = function(data, role) {
-    sessionStorage.setItem('email', data['login_email']);
-    sessionStorage.setItem('role', role);
+    window.sessionStorage.setItem('email', data['login_email']);
+    window.sessionStorage.setItem('role', role);
   };
 
   var login = function () {
@@ -75,6 +75,7 @@ var session = (function () {
     } else {
       _updatePhoneDir(formData['phone']);
       _updateEmailDir(formData['email']);
+      _saveLocalStorage(formData);
       students[0][formData[email]] = formData;
       _writeToJsonFile(students);
     }
