@@ -1,4 +1,4 @@
-(function session() {
+var session = (function () {
   var login = function () {
     alert('login clicked');
   };
