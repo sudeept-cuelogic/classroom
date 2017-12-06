@@ -1,4 +1,4 @@
-var student = (function (){
+var student = (function () {
   var teacherList = function() {
 
   };
