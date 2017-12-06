@@ -6,7 +6,7 @@ var session = (function () {
     return phone_dir.includes(phone);
   };
 
-  var _isRegistrationPresent = function (email) {
+  var _isEmailPresent = function (email) {
     return email_dir.includes(email);
   };
 
@@ -20,13 +20,13 @@ var session = (function () {
     debugger
   };
 
-  var _addPhone = function(phone) {
+  var _updatePhoneDir = function(phone) {
     if (phone && !phone_dir.includes(phone)) {
       phone_dir.push(phone);
     }
   };
 
-  var _addEmail = function(email) {
+  var _updateEmailDir = function(email) {
     if (email && !email_dir.includes(email)) {
       email_dir.push(email);
     }
@@ -40,15 +40,26 @@ var session = (function () {
     return formData;
   };
 
-  var _isValidSession = function () {
-    debugger
+  var _isValidSession = function (data, role) {
+    let user = JSON.parse(localStorage.getItem(data['login_email']));
+    return user.password == data['login_password'] && user.role == role
+  };
+
+  var _setSession = function(data, role) {
+    sessionStorage.setItem('email', data['login_email']);
+    sessionStorage.setItem('role', role);
   };
 
   var login = function () {
     let optionKeys = ['login_email', 'login_password'];
     let formData = _getFormData(optionKeys);
-    if (_isValidSession()) {
-      sessionStorage.setItem('email', formData['login_email'])
+    let role = document.querySelector('input[name="role"]:checked');
+    if (!role) {
+      alert('Please select role!!');
+    } else if (_isValidSession(formData, role.value)) {
+      _setSession(formData, role.value);
+    } else {
+      alert('Email and password does not match for selected role, Please check!!');
     }
   };
 
@@ -57,13 +68,13 @@ var session = (function () {
     let formData = _getFormData(optionKeys);
     formData['role'] = 'student';
 
-    if (_isRegistrationPresent(formData.email)) {
+    if (_isEmailPresent(formData.email)) {
       alert('Email ID already present!!');
     } else if(_isPhonePresent(formData.phone)) {
       alert('Phone number entered is already present!!');
     } else {
-      _addPhone(formData['phone']);
-      _addEmail(formData['email']);
+      _updatePhoneDir(formData['phone']);
+      _updateEmailDir(formData['email']);
       students[0][formData[email]] = formData;
       _writeToJsonFile(students);
     }
