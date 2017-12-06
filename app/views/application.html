@@ -4,27 +4,30 @@
   <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
   <meta content="utf-8" http-equiv="encoding">
   <title>Classroom</title>
+  <script type="text/javascript" src="../local_data/teachers_data.json"></script>
+  <script type="text/javascript" src="../local_data/students_data.json"></script>
+  <script type="text/javascript" src="../modules/application_module.js"></script>
   <script type="text/javascript" src="../modules/session_module.js"></script>
 </head>
 <body>
   <div id="classroomApp" style="position: absolute;">
     <div id="login" style="float: left;">
-      <form id="loginForm" >
-        <label>email: </label> <input type="text" name="email" /><br />
-        <label>password: </label> <input type="password" name="password" /><br />
-        <input type="radio" name="person" selected="true">Student</input>
-        <input type="radio" name="person">Teacher</input></br />
-        <input type="button" id="login" name="login" value="Login" onclick="session.login()">
+      <form id="loginForm" onsubmit="session.login()">
+        <label>email: </label> <input type="text" id="login_email" name="email" /><br />
+        <label>password: </label> <input type="password" id="login_password" name="password" /><br />
+        <input type="radio" name="person" value="student">Student</input>
+        <input type="radio" name="person" value="teacher">Teacher</input></br />
+        <input type="submit" id="login" name="login" value="Login" />
       </form>
     </div>
     <div id="registration" style="float: right;">
-      <form id="registration_form" >
-        <label>First Name: </label> <input type="text" name="firstName" /><br />
-        <label>Last Name: </label> <input type="text" name="lastName" /><br />
-        <label>Phone: </label> <input type="text" name="phone" /><br />
-        <label>email: </label> <input type="text" name="email" /><br />
-        <label>password: </label> <input type="password" name="password" /><br />
-        <input type="submit" name="login" value="Login">
+      <form id="registration_form" onsubmit="session.register()">
+        <label>First Name: </label> <input type="text" id = "firstName" name="firstName" /><br />
+        <label>Last Name: </label> <input type="text" id = "lastName" name="lastName" /><br />
+        <label>Phone: </label> <input type="text" id = "phone" name="phone" /><br />
+        <label>email: </label> <input type="text" id = "email" name="email" /><br />
+        <label>password: </label> <input type="password" id = "password" name="password" /><br />
+        <input type="submit" name="login" value="Register" />
       </form>
     </div>
   </div>

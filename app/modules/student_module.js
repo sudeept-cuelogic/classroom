@@ -8,6 +8,6 @@ var student = (function (){
 
   return {
     teacherList: teacherList,
-    editProfile: editProfile
+    editProfile: user.editProfile
   }
 })();

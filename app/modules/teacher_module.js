@@ -3,17 +3,13 @@ var teacher = (function() {
 
   };
 
-  var editProfile = function() {
+  var addStudent = function() {
 
   };
 
-  var addStudent = function() {
-
-  }
-
   return {
     studentList: studentList,
-    editProfile: editProfile,
+    editProfile: user.editProfile({message: 'Teachers'}),
     addStudent: addStudent
-  }
+  };
 })();
