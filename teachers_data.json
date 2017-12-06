@@ -1,0 +1,11 @@
+{
+  "test_teacher1@classroomapp.com": {
+    "password": "test_teacher1",
+    "student_data": []
+  },
+
+  "test_teacher2@classroomapp.com": {
+    "password": "test_teacher2",
+    "student_data": []
+  }
+}
