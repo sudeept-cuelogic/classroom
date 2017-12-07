@@ -1,13 +1,33 @@
 var student = (function () {
-  var teacherList = function() {
+  var loggedInEmail = window.sessionStorage.getItem('email');
+  var studentObj = JSON.parse(window.localStorage.getItem(loggedInEmail) || '{}');
 
+  var _teacherList = function() {
+    let teachers = studentObj.teachersData;
+    if (!teachers) {
+      return []
+    }
+    let myTeachers = []
+    teachers.map((teacherEmail) => {
+      myTeachers.push(
+        JSON.parse(window.localStorage.getItem(teacherEmail))
+      )
+    })
+    return myTeachers;
   };
-  var editProfile = function() {
 
+  var showTeachers = function() {
+    let teachersList = _teacherList();
+    let inputHtml = '<table><tr><th>First Name</th><th>Last Name</th><th>Email</th></tr>';
+    teachersList.map((teacher) => {
+      inputHtml += '<tr><td>' + teacher.firstName + '</td><td>' + teacher.lastName +'</td><td>' + teacher.email + '</td></tr>';
+    });
+    inputHtml += '</table>';
+    document.getElementById('teachersList').insertAdjacentHTML('afterbegin', inputHtml)
   };
 
   return {
-    teacherList: teacherList,
+    showTeachers: showTeachers,
     editProfile: user.editProfile
   }
 })();

@@ -2,9 +2,10 @@ teachers = [{
   "test_teacher1@classroomapp.com": {
     "firstName": "Teacher1",
     "password": "test_teacher1",
+    "email": "test_teacher1@classroomapp.com",
     "phone": "123456789",
     "role": "teacher",
-    "studentData": []
+    "studentsData": []
   },
 
   "test_teacher2@classroomapp.com": {
@@ -12,7 +13,8 @@ teachers = [{
     "lastName": "",
     "phone": "8097547404",
     "role": "teacher",
+    "email": "test_teacher2@classroomapp.com",
     "password": "test_teacher2",
-    "studentData": []
+    "studentsData": []
   }
 }]

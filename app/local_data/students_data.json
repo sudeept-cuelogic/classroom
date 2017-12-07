@@ -1,1 +1,11 @@
-students = [{}]
+students = [{
+  "jon@testapp.com": {
+    "firstName": "Job",
+    "lastName": "Bradshaw",
+    "email": "jon@testapp.com",
+    "phone": "11111111",
+    "teachersData": ["test_teacher1@classroomapp.com", "test_teacher2@classroomapp.com"],
+    "role": "student",
+    "password": "jon"
+  }
+}]

@@ -1,5 +1,5 @@
 var teacher = (function() {
-  var studentList = function() {
+  var _studentList = function() {
 
   };
 
@@ -7,9 +7,13 @@ var teacher = (function() {
 
   };
 
+  var showStudents = function() {
+
+  };
+
   return {
-    studentList: studentList,
-    editProfile: user.editProfile({message: 'Teachers'}),
+    showStudents: showStudents,
+    editProfile: user.editProfile,
     addStudent: addStudent
   };
 })();
