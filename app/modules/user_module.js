@@ -16,7 +16,14 @@ var user = (function() {
   window.onload = _checkValidSession;
 
   var editProfile = function() {
-    alert('Edit Profile called');
+    let currentEmail = window.sessionStorage.email;
+    let currentUser = JSON.parse(window.localStorage.getItem(currentEmail));
+
+    currentUser.firstName = document.getElementById('firstName').value;
+    currentUser.lastName = document.getElementById('lastName').value;
+    currentUser.phone = document.getElementById('phone').value;
+
+    window.localStorage.setItem(currentEmail, JSON.stringify(currentUser));
   };
 
   return {
