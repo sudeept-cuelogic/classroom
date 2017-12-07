@@ -1,4 +1,6 @@
 var user = (function() {
+  var currentEmail = window.sessionStorage.getItem('email');
+  var currentUser = JSON.parse(window.localStorage.getItem(currentEmail) || '{}');
   // Private method to check if user has valid session or not
   var _checkValidSession = function() {
     let validSession = true;
@@ -29,5 +31,7 @@ var user = (function() {
 
   return {
     editProfile: editProfile,
+    currentUser: currentUser,
+    currentEmail, currentEmail
   }
 })();

@@ -18,12 +18,10 @@
       </div>
     </div>
     <div style="float: right; ">
-      <form id="editProfileForm" onsubmit="student.editProfile()">
-        <label>First Name</label><input type="text" id="firstName" /><br />
-        <label>Last Name</label><input type="text" id="lastName" /><br />
-        <label>Phone</label><input type="text" id="phone" /><br />
-        <input type="submit" value="Save Changes" id="editFormSubmit" />
-      </form>
+      <label>First Name</label><input type="text" id="firstName" /><br />
+      <label>Last Name</label><input type="text" id="lastName" /><br />
+      <label>Phone</label><input type="text" id="phone" /><br />
+      <input type="button" value="Save Changes" id="editProfile" onclick="student.editProfile()" />
     </div>
   </div>
   <div style="display: none">

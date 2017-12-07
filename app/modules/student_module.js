@@ -1,9 +1,7 @@
 var student = (function () {
-  var loggedInEmail = window.sessionStorage.getItem('email');
-  var studentObj = JSON.parse(window.localStorage.getItem(loggedInEmail) || '{}');
 
   var _teacherList = function() {
-    let teachers = studentObj.teachersData;
+    let teachers = user.currentUser.teachersData;
     if (!teachers) {
       return []
     }

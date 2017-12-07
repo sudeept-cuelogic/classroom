@@ -12,23 +12,19 @@
 <body>
   <div id="classroomApp" style="position: absolute;">
     <div id="login" style="float: left;">
-      <form id="loginForm" onsubmit="session.login()">
-        <label>email: </label> <input type="text" id="login_email" name="email" /><br />
-        <label>password: </label> <input type="password" id="login_password" name="password" /><br />
-        <input type="radio" name="role" value="student">Student</input>
-        <input type="radio" name="role" value="teacher">Teacher</input></br />
-        <input type="submit" id="login" name="login" value="Login" />
-      </form>
+      <label>email: </label> <input type="text" id="login_email" name="email" /><br />
+      <label>password: </label> <input type="password" id="login_password" name="password" /><br />
+      <input type="radio" name="role" value="student">Student</input>
+      <input type="radio" name="role" value="teacher">Teacher</input></br />
+      <input type="button" id="login" name="login" value="Login" onclick="session.login()" />
     </div>
     <div id="registration" style="float: right;">
-      <form id="registration_form" onsubmit="session.register()">
-        <label>First Name: </label> <input type="text" id = "firstName" name="firstName" /><br />
-        <label>Last Name: </label> <input type="text" id = "lastName" name="lastName" /><br />
-        <label>Phone: </label> <input type="text" id = "phone" name="phone" /><br />
-        <label>email: </label> <input type="text" id = "email" name="email" /><br />
-        <label>password: </label> <input type="password" id = "password" name="password" /><br />
-        <input type="submit" name="login" value="Register" />
-      </form>
+      <label>First Name: </label> <input type="text" id = "firstName" name="firstName" /><br />
+      <label>Last Name: </label> <input type="text" id = "lastName" name="lastName" /><br />
+      <label>Phone: </label> <input type="text" id = "phone" name="phone" /><br />
+      <label>email: </label> <input type="text" id = "email" name="email" /><br />
+      <label>password: </label> <input type="password" id = "password" name="password" /><br />
+      <input type="submit" name="login" value="Register" onclick="session.register()" />
     </div>
     <div style="display: none;">
       <a id="student" href="file:///home/sudeep/Projects/classroom/app/views/student.html"></a>
