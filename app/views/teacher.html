@@ -8,6 +8,25 @@
   <script type="text/javascript" src="../modules/teacher_module.js"></script>
 </head>
 <body>
-
+  <div>
+    <div style="float: left;">
+      <h3>My students</h3>
+      <div id="studentsList">
+        <script>
+        </script>
+      </div>
+    </div>
+    <div style="float: right; ">
+      <form id="editProfileForm" onsubmit="teacher.editProfile()">
+        <label>First Name</label><input type="text" id="firstName" /><br />
+        <label>Last Name</label><input type="text" id="lastName" /><br />
+        <label>Phone</label><input type="text" id="phone" /><br />
+        <input type="submit" value="Save Changes" id="editFormSubmit" />
+      </form>
+    </div>
+  </div>
+  <div style="display: none">
+    <a id="application" href="file:///home/sudeep/Projects/classroom/app/views/application.html"></a>
+  </div>
 </body>
 </html>

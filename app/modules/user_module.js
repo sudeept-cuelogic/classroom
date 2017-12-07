@@ -6,7 +6,8 @@ var user = (function() {
       validSession = false;
     } else {
       let user = JSON.parse(window.localStorage.getItem(window.sessionStorage.email));
-      validSession = (user.role == window.sessionStorage.getItem('role'));
+      validSession = (user.role == window.sessionStorage.getItem('role') &&
+          window.location.href.match(/[\w]+.html/)[0].match(/[\w]+/)[0] == window.sessionStorage.getItem('role'));
     }
     if (!validSession) {
       document.getElementById('application').click();
