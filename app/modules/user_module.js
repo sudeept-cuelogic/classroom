@@ -2,7 +2,6 @@ var user = (function() {
   // Private method to check if user has valid session or not
   var _checkValidSession = function() {
     let validSession = true;
-    debugger
     if(!window.sessionStorage.email) {
       validSession = false;
     } else {
