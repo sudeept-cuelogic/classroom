@@ -45,7 +45,7 @@ const session = (function () {
 
     const _getFormData = function (keys) {
 
-        let formData = {};
+        const formData = {};
 
         keys.map((id) => {
 
@@ -59,7 +59,7 @@ const session = (function () {
 
     const _isValidSession = function (data, role) {
 
-        let user = JSON.parse(window.localStorage.getItem(data['login_email']));
+        const user = JSON.parse(window.localStorage.getItem(data['login_email']));
 
         return user.password === data['login_password'] && user.role === role;
 
