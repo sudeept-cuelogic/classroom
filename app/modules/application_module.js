@@ -3,15 +3,22 @@ var application = (function() {
   let email_dir = JSON.parse(window.localStorage.email_dir || '[]')
 
   var _parseData = function (data) {
-    Object.keys(data).map( (email) => {
-      if (!window.localStorage.getItem(email)) {
-        window.localStorage.setItem(email, JSON.stringify(data[email]));
-      }
-      if (data[email]['phone'] && !phone_dir.includes(data[email]['phone'])) {
-        phone_dir.push(data[email]['phone']);
-      }
-      if (!email_dir.includes(email)) {
-        email_dir.push(email);
+    return new Promise(function(resolve, reject) {
+      try {
+        Object.keys(data).map( (email) => {
+          if (!window.localStorage.getItem(email)) {
+            window.localStorage.setItem(email, JSON.stringify(data[email]));
+          }
+          if (data[email]['phone'] && !phone_dir.includes(data[email]['phone'])) {
+            phone_dir.push(data[email]['phone']);
+          }
+          if (!email_dir.includes(email)) {
+            email_dir.push(email);
+          }
+        });
+        resolve(window.localStorage);
+      } catch(err) {
+        reject(err)
       }
     });
   };
@@ -22,8 +29,16 @@ var application = (function() {
   }
 
   var _initializeData = (function () {
-    _parseData(students[0]);
-    _parseData(teachers[0]);
-    _saveLocalStorage();
+    _parseData(students[0]).then(function(obj) {
+      console.log('Student data has been parse and saved successfully', obj);
+      _parseData(teachers[0]).then(function(obj) {
+        console.log('Teachers data has been parse and saved successfully', obj);
+        _saveLocalStorage();
+      }, function(err) {
+        console.log('Error occured while parsing data and further execution halted', err);
+      });
+    }, function(err) {
+      console.log('Error occured while parsing data and further execution halted', err);
+    });
   })();
 })();
