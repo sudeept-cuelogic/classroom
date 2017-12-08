@@ -58,7 +58,7 @@ var session = (function () {
       alert('Please select role!!');
     } else if (_isValidSession(formData, role.value)) {
       _setSession(formData, role.value);
-      document.getElementById(role.value).click();
+      window.location.href = role.value + '.html';
     } else {
       alert('Email and password does not match for selected role, Please check!!');
     }
