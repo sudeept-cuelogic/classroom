@@ -1,89 +1,131 @@
-var session = (function () {
-  let phone_dir = JSON.parse(window.localStorage.getItem('phone_dir') || '[]');
-  let email_dir = JSON.parse(window.localStorage.getItem('email_dir') || '[]');
+const session = (function () {
 
-  var _isPhonePresent = function(phone) {
-    return phone_dir.includes(phone);
-  };
+    const phoneDir = JSON.parse(window.localStorage.getItem('phoneDir') || '[]');
+    const emailDir = JSON.parse(window.localStorage.getItem('emailDir') || '[]');
 
-  var _isEmailPresent = function (email) {
-    return email_dir.includes(email);
-  };
+    const _isPhonePresent = function ({phone}) {
 
-  var _saveLocalStorage = function(options) {
-    window.localStorage.setItem('phone_dir', JSON.stringify(phone_dir));
-    window.localStorage.setItem('email_dir', JSON.stringify(email_dir));
-    window.localStorage.setItem(options['email'], JSON.stringify(options));
-  };
+        return phoneDir.includes(phone);
 
-  var _writeToJsonFile = function(students) {
-    debugger
-  };
+    };
 
-  var _updatePhoneDir = function(phone) {
-    if (phone && !phone_dir.includes(phone)) {
-      phone_dir.push(phone);
-    }
-  };
+    const _isEmailPresent = function ({email}) {
 
-  var _updateEmailDir = function(email) {
-    if (email && !email_dir.includes(email)) {
-      email_dir.push(email);
-    }
-  };
+        return emailDir.includes(email);
 
-  var _getFormData = function(keys) {
-    let formData = {};
-    keys.map((id) => {
-      formData[id] = document.getElementById(id).value;
-    });
-    return formData;
-  };
+    };
 
-  var _isValidSession = function (data, role) {
-    let user = JSON.parse(window.localStorage.getItem(data['login_email']));
-    return user.password == data['login_password'] && user.role == role
-  };
+    const _saveLocalStorage = function (options) {
 
-  var _setSession = function(data, role) {
-    window.sessionStorage.setItem('email', data['login_email']);
-    window.sessionStorage.setItem('role', role);
-  };
+        window.localStorage.setItem('phoneDir', JSON.stringify(phoneDir));
+        window.localStorage.setItem('emailDir', JSON.stringify(emailDir));
+        window.localStorage.setItem(options['email'], JSON.stringify(options));
 
-  var login = function () {
-    let optionKeys = ['login_email', 'login_password'];
-    let formData = _getFormData(optionKeys);
-    let role = document.querySelector('input[name="role"]:checked');
-    if (!role) {
-      alert('Please select role!!');
-    } else if (_isValidSession(formData, role.value)) {
-      _setSession(formData, role.value);
-      window.location.href = role.value + '.html';
-    } else {
-      alert('Email and password does not match for selected role, Please check!!');
-    }
-  };
+    };
 
-  var register = function () {
-    let optionKeys = ['firstName', 'lastName', 'email', 'phone', 'password'];
-    let formData = _getFormData(optionKeys);
-    formData['role'] = 'student';
+    const _updatePhoneDir = function ({phone}) {
 
-    if (_isEmailPresent(formData.email)) {
-      alert('Email ID already present!!');
-    } else if(_isPhonePresent(formData.phone)) {
-      alert('Phone number entered is already present!!');
-    } else {
-      _updatePhoneDir(formData['phone']);
-      _updateEmailDir(formData['email']);
-      _saveLocalStorage(formData);
-      students[0][formData[email]] = formData;
-      _writeToJsonFile(students);
-    }
-  };
+        if (phone && !phoneDir.includes(phone)) {
 
-  return {
-    login: login,
-    register: register
-  };
+            phoneDir.push(phone);
+
+        }
+
+    };
+
+    const _updateEmailDir = function ({email}) {
+
+        if (email && !emailDir.includes(email)) {
+
+            emailDir.push(email);
+
+        }
+
+    };
+
+    const _getFormData = function (keys) {
+
+        let formData = {};
+
+        keys.map((id) => {
+
+            formData[id] = document.getElementById(id).value;
+
+        });
+
+        return formData;
+
+    };
+
+    const _isValidSession = function (data, role) {
+
+        let user = JSON.parse(window.localStorage.getItem(data['login_email']));
+
+        return user.password === data['login_password'] && user.role === role;
+
+    };
+
+    const _setSession = function (data, role) {
+
+        window.sessionStorage.setItem('email', data['login_email']);
+        window.sessionStorage.setItem('role', role);
+
+    };
+
+    const login = function () {
+
+        const optionKeys = ['login_email', 'login_password'];
+        const formData = _getFormData(optionKeys);
+        const role = document.querySelector('input[name="role"]:checked');
+
+        if (!role) {
+
+            alert('Please select role!!');
+
+        } else if (_isValidSession(formData, role.value)) {
+
+            _setSession(formData, role.value);
+            window.location.href = `${role.value}.html`;
+
+        } else {
+
+            alert('Email and password does not match for selected role, Please check!!');
+
+        }
+
+    };
+
+    const register = function () {
+
+        const optionKeys = ['firstName', 'lastName', 'email', 'phone', 'password'];
+        const formData = _getFormData(optionKeys);
+
+        formData['role'] = 'student';
+
+        if (_isEmailPresent(formData)) {
+
+            alert('Email ID already present!!');
+
+        } else if (_isPhonePresent(formData)) {
+
+            alert('Phone number entered is already present!!');
+
+        } else {
+
+            _updatePhoneDir(formData);
+            _updateEmailDir(formData);
+            _saveLocalStorage(formData);
+            students[0][formData[email]] = formData;
+
+        }
+
+    };
+
+    return {
+
+        login,
+        register
+
+    };
+
 })();
