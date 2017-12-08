@@ -114,6 +114,7 @@ const session = (function () {
 
             _updatePhoneDir(formData);
             _updateEmailDir(formData);
+            formData['teachersData'] = [];
             _saveLocalStorage(formData);
             students[0][formData[email]] = formData;
 

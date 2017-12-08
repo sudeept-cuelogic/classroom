@@ -1,4 +1,4 @@
-const teacher = (function () {
+const teacher = (() => {
 
     const _studentList = function () {
 
@@ -22,6 +22,19 @@ const teacher = (function () {
 
     };
 
+    const _mapTeacherToStudent = function ({email}) {
+
+        const student = JSON.parse(window.localStorage.getItem(email));
+
+        if (!student['teachersData'].includes(email)) {
+
+            student['teachersData'].push(email);
+            window.localStorage.setItem(email, JSON.stringify(student));
+
+        }
+
+    };
+
     const addStudent = function () {
 
         const student = JSON.parse(window.localStorage.getItem(document.getElementById('email').value));
@@ -39,6 +52,7 @@ const teacher = (function () {
             window.localStorage.setItem(user.currentEmail, JSON.stringify(user.currentUser));
 
         }
+        _mapTeacherToStudent(student);
 
     };
 
