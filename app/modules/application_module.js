@@ -4,7 +4,9 @@ var application = (function() {
 
   var _parseData = function (data) {
     Object.keys(data).map( (email) => {
-      localStorage.setItem(email, JSON.stringify(data[email]));
+      if (!window.localStorage.getItem(email)) {
+        localStorage.setItem(email, JSON.stringify(data[email]));
+      }
       if (data[email]['phone'] && !phone_dir.includes(data[email]['phone'])) {
         phone_dir.push(data[email]['phone']);
       }
